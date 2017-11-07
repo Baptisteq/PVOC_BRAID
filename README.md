@@ -5,7 +5,6 @@ I played the video game called Braid and I decided to explore the audio mechanic
 1. Get pure data 0.47.1 https://puredata.info/downloads/pure-data/releases/0.47-1
 2. Launch Patch PVOC_BRAID.pd
 3. By default the first module is on you will hear the music. You can start experimenting by pressing the left shift key and the "+" and "-" keys. 
-
-4.You can switch between the three other module by clicking on the Disable/Enable Button
+4. You can switch between the three other module by clicking on the Disable/Enable Button
 
 Thank you for trying my patch

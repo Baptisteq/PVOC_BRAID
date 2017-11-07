@@ -1,0 +1,129 @@
+#N canvas 0 50 1916 998 10;
+#X declare -path abstractions;
+#X declare -path music;
+#X obj 109 169 PVOC_SHIFT 1 2;
+#X text 663 494 In Some levels \, audio playback is controled by the
+movement of the player (to be more accurate the X position in the 2D
+scene). According to the speed of the player \, the music will be faster
+or slower. I took the same mechanic and change some aspects. As for
+the first prototype i preserve the tonality of the song. Also \, when
+the player is not moving the music freeze. This is something that the
+Phase Vocoder playback system is able to do. When the player achieve
+his nominal speed the playback system switch to the nominal playback.
+;
+#X obj 627 170 PVOC_LEFT_RIGHT 3 4;
+#X obj 1144 170 PVOC_RING 5 6;
+#X text 1329 831 Baptiste Quéméner;
+#X text 1343 849 November 2017;
+#X text 1327 868 quemeneb@gmail.com;
+#X text 1292 892 https://github.com/Baptisteq;
+#N canvas 0 50 1141 911 MASTER 0;
+#X obj 508 61 declare -path abstractions;
+#X obj 509 93 declare -path music;
+#X obj 625 285 dac~;
+#X obj 740 152 r~ 1-tomaster;
+#X obj 768 173 r~ 2-tomaster;
+#X obj 593 151 r~ 3-tomaster;
+#X obj 621 172 r~ 4-tomaster;
+#X obj 466 154 r~ 5-tomaster;
+#X obj 492 180 r~ 6-tomaster;
+#X obj 617 252 *~;
+#X obj 652 252 *~;
+#X obj 129 139 vsl 15 128 0.0001 4 1 0 empty empty empty 0 -9 0 10
+-185881 -1 -1 11039 1;
+#X floatatom 144 150 5 0 0 0 - - -, f 5;
+#X obj 95 42 loadbang;
+#X msg 95 64 1;
+#X msg 210 306 \$1 80;
+#X obj 210 328 line;
+#X obj 114 149 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 210 199 rmstodb;
+#X obj 208 228 - 100;
+#X obj 732 346 loadbang;
+#X msg 728 387 \; pd dsp 1;
+#X connect 3 0 9 0;
+#X connect 4 0 10 0;
+#X connect 5 0 9 0;
+#X connect 6 0 10 0;
+#X connect 7 0 9 0;
+#X connect 8 0 10 0;
+#X connect 9 0 2 0;
+#X connect 10 0 2 1;
+#X connect 11 0 15 0;
+#X connect 11 0 18 0;
+#X connect 13 0 14 0;
+#X connect 14 0 11 0;
+#X connect 15 0 16 0;
+#X connect 16 0 9 1;
+#X connect 16 0 10 1;
+#X connect 17 0 14 0;
+#X connect 18 0 19 0;
+#X connect 19 0 12 0;
+#X connect 20 0 21 0;
+#X coords 0 -1 1 1 95 200 1 100 100;
+#X restore 1677 172 pd MASTER;
+#X text 1240 795 Thanks to Corvett for his help on r/puredata;
+#X text 1253 657 "Long Past Gone"(2004) - Jami Sieber;
+#X text 1285 690 "Maenam"(2004) - Jami Sieber;
+#X text 1241 673 "Lulabby Set"(2002) - Shira Kammen & Swan;
+#X text 1276 745 RJlib https://github.com/rjdj/rjlib;
+#X text 1309 727 http://braid-game.com/;
+#X text 1378 815 - -;
+#X text 1352 632 - Music -;
+#X text 1191 778 http://msp.ucsd.edu/techniques/v0.11/book-html/node182.html
+;
+#X text 1313 761 I07.Phase Vocoder.pd;
+#X text 1374 710 - -;
+#X text 669 778 With these 3 prototypes I Wanted to show the interactive
+and esthetic potential of the Phase Vocoder playback engine by reproducing
+the audio/control mechanics of Braid. And to give an "hommage" for
+a game I deeply like;
+#X text 1191 495 The ring is an object that can be put on the ground.
+It creates an area where the time is extremely slow when going near
+the center and goes back to normal by the distance. The Phase Vocoder
+playback system allows to change the transposition of each sample and
+keep the same speed. In this prototype the playback location of the
+PVOC is synchronised with the nominal playback's location. So the speed
+is the same as the original when the PVOC is engaged \, whereas the
+tonality of the sound can be transposed without altering the playback
+speed.;
+#X text 130 15 In Braid the hero has the ability to rewind the time
+and to go back forward \, it is a key element of the gameplay and all
+the puzzles are resolved aroud this mechanic. When the hero goes in
+"TimeShift" mode \, graphical and audio feedback give the information
+to the player that past events can be replayed to change the course
+of the game. The Audio feeback in the game are divised in two stems.
+Audio varispeed of the music and audio varispeed of the game objects
+presents in the scene.;
+#X text 671 13 This key element of the gameplay inspire me since I
+experimented with Miller's Puckette work called Phase Vocoder (I07.Phase
+Vocoder.pd example). Miller Puckette is the maker of Pure Data. The
+phase Vocoder is an audio playback system that allows to play an audio
+faster or slower and keeping the nominal tonality of the sound and
+vice versa \, altering the tonality of the sound and keeping the same
+audio lengh. It has a lot of creative potential for sound design aswell
+as interactive mechanic in video games.;
+#X text 1201 13 Braid is an inspiration aswell as Johnatan Blow's recent
+piece "The witness". His games confront the player to question his
+environment to solve puzzles and question himself his own approach
+to issues and the way he thinks. He creates modern games experiences
+with tools that are diverted from their original function \, to serve
+gameplay mechanics. For example 3D environement pattern puzzle in The
+Witness and variation of the music's playback speed in synch with the
+shift of time \, in Braid.;
+#X text 144 494 With the combinaison Shift + "Up" and "Down" the player
+can go back or forward with some coefficient of speed (*1 *2 *4 *8
+and in reverse * -1 *-2...) at * -1 the music and audio objects are
+played at nominal speed but in reverse and at * -2 in reverse and twice
+faster (so one octave higher). In This prototype I wanted to preserve
+this mechanic but to keep aswell the tonality of the song. In this
+playback system there are always two playback engine one nominal and
+one Phase Vocoder. By entering and exiting Shift mode the system always
+crossfade between one and the other. The Xfade section is here to keep
+a natural effect of coherence when switching between both. The Phase
+Vocoder has a huge impact on the stereo field if already existent in
+the original audio file. The PVOC_Stereo_Widht is here to either keep
+a coherent stereo field between nominal and PVOC playback \, or to
+exagerate the audio stereo field to notify the player he is in the
+timeshift mode.;
